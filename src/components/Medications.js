@@ -1,5 +1,6 @@
 import React, { PureComponent} from 'react';
 import Medication from './Medication'
+import ErrorPage from './ErrorPage'
 
 class Medications extends PureComponent {
     state = {
@@ -14,10 +15,11 @@ class Medications extends PureComponent {
     }
     render() {
         return (
-            <>
-                <select id='select-medication' onChange={this.handleChooseAMedication}>{this.medicationOptions()}</select>
-               {!!this.state.medication ? <Medication {...this.state.medication}/> : <h3>Select A Medication</h3>} 
-            </>
+            <h1>Medications</h1>
+            // <>
+            //     <select id='select-medication' onChange={this.handleChooseAMedication}>{this.medicationOptions()}</select>
+            //    {!!this.state.medication ? <Medication {...this.state.medication}/> : <ErrorPage />} 
+            // </>
         )
     }
 }

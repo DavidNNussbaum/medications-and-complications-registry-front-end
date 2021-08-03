@@ -1,17 +1,22 @@
 import React, {Component} from 'react';
-import './App.css';
+import { connect } from 'react-redux';
+import { render } from '@testing-library/react';
+import '../App.css';
 import Medications from './Medications';
 import Navbar from "./Navbar";
 import Home from './Home';
+import Logon from './Logon';
+import Signup from './Signup';
+// import MedicationList from './lists/MedicationList';
+// import ComplicationList from './lists/ComplicationList';
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
-import ComplicationsList from '../containerss/ComplicationsContainer';
-import UsersList from '../components/Users';
+import ComplicationsList from '../containers/ComplicationsContainer';
 import fetchMeds from '../actions/medActions'
-import { render } from '@testing-library/react';
+
 
 class App extends Component {
   componentDidMount() {
-    this.props.fetchMedications()
+    this.props.fetchMeds()
   }
   
   handleLoading = () => {
@@ -19,20 +24,34 @@ class App extends Component {
       return <div>Loading...</div>
     } else {
       return (
-      <MedicationList medList={this.props.medList} />
-      <ComplicationList compList={this.props.compList} />
+      <>
+      {/* <MedicationList medList={this.props.medList} />
+      <ComplicationList compList={this.props.compList} /> */}
+      </>
       )
     }
   }
 
   render() {
     return (
-      <div className="App">
-        <h1>Medications</h1>
-        {this.handleLoading()}
-      </div>
-    );
-  }
+          <>
+           
+          <div className="navbar">
+          <Router>
+            <Navbar />
+            <Switch>
+              <Route exact path="/" component={Home} /> 
+              <Route path="/medications" component={Medications}/>
+              {/* <Route path="/medications" render={(props) => <Medications medicationsList={this.state.medicationsList} complicationsList={this.state.complicationsList} routeProps={props} /> }/> */}
+              {/* <Route path="`/medications/${medication_id}`" render={(props) => <Medication medication={medication.id === e.target.value} complication={complication.medication_id === medication.id} } /> */}
+              <Route path="/logon" component={Logon}/> 
+              <Route path="/signup" component={Signup}/>
+            </Switch>
+          </Router>
+        </div>
+        </>
+        );
+      }
 }
 
 const mapStateToProps = state => {

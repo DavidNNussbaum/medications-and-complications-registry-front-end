@@ -3,7 +3,8 @@ import medicationsReducer from './manageMedications'
 import {combineReducers} from 'redux'
 
 const rootReducer = combineReducers({
-    counter: counterReducer,
-    isLogged: loggedReducer
+    complications: complicationsReducer,
+    medications: medicationsReducer,
+     
 })
 export default rootReducer

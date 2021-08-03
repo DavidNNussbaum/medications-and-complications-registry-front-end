@@ -19,28 +19,29 @@ const Navbar = (props) =>
       }}
     >Home</NavLink>
     <NavLink
-      to="/doctors"
+      to="/medications"
       exact
       style={link}
       activeStyle={{
         background: 'darkblue'
       }}
-    >Doctors</NavLink>
+    >Medications</NavLink>
     <NavLink
-      to="/login"
+      to="/logon"
       exact
       style={link}
       activeStyle={{
         background: 'darkblue'
       }}
-    >Login</NavLink>
+    >Logon</NavLink>
     <NavLink
-      to="/signon"
+      to="/signup"
       exact
       style={link}
       activeStyle={{
         background: 'darkblue'
       }}
-    >Signon</NavLink>
+    >Signup</NavLink>
   </div>;
+
   export default Navbar;

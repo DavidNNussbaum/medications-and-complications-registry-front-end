@@ -12,9 +12,6 @@ function Complication({severity, duration, description, resolved}) {
 }
 export default Complication;
 
-t.integer "complication_severity"
-    t.string "complication_duration"
-    t.text "complication_description"
-    t.boolean "completely_resolved"
+ 
 
  

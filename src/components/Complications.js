@@ -1,5 +1,6 @@
 import React, { PureComponent} from 'react';
-import Complication from './Complication'
+import Complication from './Complication';
+import ErrorPage from './ErrorPage';
 
 class Complications extends PureComponent {
     state = {
@@ -10,10 +11,10 @@ class Complications extends PureComponent {
     render() {
         return (
             <>
-               {!!this.state.complication ? <Complication {...this.state.complication}/>} 
+               {!!this.state.complication ? <Complication {...this.state.complication} />: <ErrorPage />} 
             </>
         )
     }
 }
 
-    export default Complications;
+export default Complications;

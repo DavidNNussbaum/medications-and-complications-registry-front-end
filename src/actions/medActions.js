@@ -1,4 +1,4 @@
-export const fetchMeds = () => {
+const fetchMeds = () => {
     return (dispatch) => {
       dispatch({ type: 'LOADING_MEDS'})
       fetch('http://localhost:3000/medications').then(response => {
@@ -8,4 +8,6 @@ export const fetchMeds = () => {
       })
     }
   }
+
+  export default fetchMeds;
  
