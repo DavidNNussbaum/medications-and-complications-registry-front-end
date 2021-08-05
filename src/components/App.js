@@ -11,7 +11,7 @@ import Signup from './Signup';
 // import ComplicationList from './lists/ComplicationList';
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 import ComplicationsList from '../containers/ComplicationsContainer';
-import fetchMeds from '../actions/medActions'
+import { fetchMeds } from '../actions/medActions'
 
 
 class App extends Component {
@@ -25,6 +25,7 @@ class App extends Component {
     } else {
       return (
       <>
+      < Medications medications={this.props.medications} testing="testing"/>
       {/* <MedicationList medList={this.props.medList} />
       <ComplicationList compList={this.props.compList} /> */}
       </>
@@ -41,9 +42,9 @@ class App extends Component {
             <Navbar />
             <Switch>
               <Route exact path="/" component={Home} /> 
-              <Route path="/medications" component={Medications}/>
-              {/* <Route path="/medications" render={(props) => <Medications medicationsList={this.state.medicationsList} complicationsList={this.state.complicationsList} routeProps={props} /> }/> */}
-              {/* <Route path="`/medications/${medication_id}`" render={(props) => <Medication medication={medication.id === e.target.value} complication={complication.medication_id === medication.id} } /> */}
+              <Route path="/medications" render={props => 
+                 <Medications {...props} test="test"/>
+              }/>
               <Route path="/logon" component={Logon}/> 
               <Route path="/signup" component={Signup}/>
             </Switch>
@@ -56,7 +57,7 @@ class App extends Component {
 
 const mapStateToProps = state => {
   return {
-    medList: state.medications,
+    medications: state.medications,
     loading: state.loading
   }
 }

@@ -1,10 +1,11 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
+ 
 const link = {
   width: '100px',
   padding: '12px',
-  margin: '1em',
-  background: 'blue',
+  margin: '0',
+  background: 'grey',
   textDecoration: 'none',
   color: 'white',
 }
@@ -15,7 +16,7 @@ const Navbar = (props) =>
       exact
       style={link}
       activeStyle={{
-        background: 'darkblue'
+        background: 'black'
       }}
     >Home</NavLink>
     <NavLink
@@ -23,7 +24,7 @@ const Navbar = (props) =>
       exact
       style={link}
       activeStyle={{
-        background: 'darkblue'
+        background: 'black'
       }}
     >Medications</NavLink>
     <NavLink
@@ -31,7 +32,7 @@ const Navbar = (props) =>
       exact
       style={link}
       activeStyle={{
-        background: 'darkblue'
+        background: 'black'
       }}
     >Logon</NavLink>
     <NavLink
@@ -39,7 +40,7 @@ const Navbar = (props) =>
       exact
       style={link}
       activeStyle={{
-        background: 'darkblue'
+        background: 'black'
       }}
     >Signup</NavLink>
   </div>;
