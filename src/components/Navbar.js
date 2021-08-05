@@ -20,11 +20,11 @@ const Navbar = (props) =>
       }}
     >Home</NavLink>
     <NavLink
-      to="/medications"
-      exact
-      style={link}
-      activeStyle={{
-        background: 'black'
+    to="/medications"
+    exact
+    style={link}
+    activeStyle={{
+      background: 'black'
       }}
     >Medications</NavLink>
     <NavLink

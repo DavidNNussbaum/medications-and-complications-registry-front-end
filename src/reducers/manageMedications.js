@@ -6,7 +6,7 @@ const medicationsReducer = (state = { medications: [], loading: false }, action)
           medications: [...state.medications],
           loading: true
         }
-      case 'ADD_CATS':
+      case 'ADD_MEDS':
         return {
           ...state,
           medications: action.medications,

@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import { connect } from 'react-redux';
 import { render } from '@testing-library/react';
 import '../App.css';
 import Medications from './Medications';
@@ -7,31 +6,10 @@ import Navbar from "./Navbar";
 import Home from './Home';
 import Logon from './Logon';
 import Signup from './Signup';
-// import MedicationList from './lists/MedicationList';
-// import ComplicationList from './lists/ComplicationList';
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
-import ComplicationsList from '../containers/ComplicationsContainer';
-import { fetchMeds } from '../actions/medActions'
-
-
+ 
 class App extends Component {
-  componentDidMount() {
-    this.props.fetchMeds()
-  }
   
-  handleLoading = () => {
-    if(this.props.loading) {
-      return <div>Loading...</div>
-    } else {
-      return (
-      <>
-      < Medications medications={this.props.medications} testing="testing"/>
-      {/* <MedicationList medList={this.props.medList} />
-      <ComplicationList compList={this.props.compList} /> */}
-      </>
-      )
-    }
-  }
 
   render() {
     return (
@@ -42,9 +20,7 @@ class App extends Component {
             <Navbar />
             <Switch>
               <Route exact path="/" component={Home} /> 
-              <Route path="/medications" render={props => 
-                 <Medications {...props} test="test"/>
-              }/>
+              <Route path="/medications" component={Medications}/>
               <Route path="/logon" component={Logon}/> 
               <Route path="/signup" component={Signup}/>
             </Switch>
@@ -55,14 +31,7 @@ class App extends Component {
       }
 }
 
-const mapStateToProps = state => {
-  return {
-    medications: state.medications,
-    loading: state.loading
-  }
-}
-
-export default connect(mapStateToProps, { fetchMeds })(App)
+export default App;
 
 
 //   -------------------------------------------------

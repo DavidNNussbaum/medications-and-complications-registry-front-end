@@ -1,36 +1,44 @@
 import React, { PureComponent} from 'react';
-import Medication from './Medication'
-import ErrorPage from './ErrorPage'
+import { connect } from 'react-redux';
+import fetchMeds from '../actions/medActions'
+import MedicationList from '../lists/MedicationList'
 
 class Medications extends PureComponent {
-    listMedications = () => {
-        console.log(this.props)
-        return this.props.medications.map(med => <h1>{med.id}</h1>)
-    }
-    // state = {
-    //     medications: null,
-    //     selection: ''
-    // }
-    // medicationOptions = () => this.props.medList.map(medication => <option value={medication.id}>{medication.name_strength} </option>)
-    // handleChooseAMedication = (e) => {
-    //     const medication = this.props.medList.find((medication) => medication.id === parseInt(e.target.value))
-    //     this.setState({ medication })
-       
-    // }
+    componentDidMount() {
+        this.props.fetchMeds()
+      }
+      
+      handleLoading = () => {
+        if(this.props.loading) {
+          return <div>Loading...</div>
+        } else {
+          return (
+           
+                <MedicationList medications={this.props.medications.medications}/>
+    
+          )
+        }
+      }
     render() {
         return (
             <>
             <h1>Medications</h1>
             <div>
-                {this.listMedications()}
+                {this.handleLoading()}
             </div>
             </>
-            // <>
-            //     <select id='select-medication' onChange={this.handleChooseAMedication}>{this.medicationOptions()}</select>
-            //    {!!this.state.medication ? <Medication {...this.state.medication}/> : <ErrorPage />} 
-            // </>
         )
     }
 }
+const mapStateToProps = state => {
+    return {
+      medications: state.medications,
+      loading: state.medications.loading
+    }
+  }
 
-    export default Medications;
+  const mapDispatchToProps = (dispatch) => {
+      return {fetchMeds: () => dispatch(fetchMeds())}
+  }
+  
+  export default connect(mapStateToProps, mapDispatchToProps)(Medications)
