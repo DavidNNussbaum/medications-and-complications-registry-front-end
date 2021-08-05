@@ -20,14 +20,6 @@ const Navbar = (props) =>
       }}
     >Home</NavLink>
     <NavLink
-    to="/medications"
-    exact
-    style={link}
-    activeStyle={{
-      background: 'black'
-      }}
-    >Medications</NavLink>
-    <NavLink
       to="/logon"
       exact
       style={link}
@@ -43,6 +35,22 @@ const Navbar = (props) =>
         background: 'black'
       }}
     >Signup</NavLink>
+     <NavLink
+    to="/medications"
+    exact
+    style={link}
+    activeStyle={{
+      background: 'black'
+      }}
+    >Medications</NavLink>
+    <NavLink
+      to="/logoff"
+      exact
+      style={link}
+      activeStyle={{
+        background: 'black'
+      }}
+    >Logoff</NavLink>
   </div>;
 
   export default Navbar;
