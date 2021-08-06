@@ -4,6 +4,7 @@ import fetchMeds from '../actions/medActions';
 import MedicationList from '../lists/MedicationList';
 import LoadingIndicator from './LoadingIndicator';
 import ErrorPage from './ErrorPage';
+import CreateMedication from './CreateMedication'
 
 class Medications extends PureComponent {
     componentDidMount() {
@@ -12,7 +13,7 @@ class Medications extends PureComponent {
       
       handleLoading = () => {
         if(this.props.loading) {
-          return <div>Loading...</div>
+          return < LoadingIndicator />
         } else {
           return (
             <MedicationList medications={this.props.medications.medications}/>
@@ -31,6 +32,7 @@ class Medications extends PureComponent {
             <>
             <h1>Medications</h1>
             <div>
+          <CreateMedication/>
                 {this.handleLoading()}
             </div>
             </>

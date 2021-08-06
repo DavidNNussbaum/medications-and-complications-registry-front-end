@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import Medication from '../components/Medication';
+import ComplicationList from './ComplicationList'
 
 class MedicationList extends Component {
   constructor(props) {
@@ -25,16 +27,8 @@ class MedicationList extends Component {
         </select>
         {this.state.medication && (
           <>
-            <h1>Complications</h1>
-            {this.state.medication.attributes.complications.map(complication => 
-                  <div key={complication.id}>
-                    <p>Description: {complication.complication_description}</p>
-                    <p>Severity: {complication.complication_severity}</p>
-                    <p>Duration: {complication.complication_duration}</p>
-                    <p>Resolved: {complication.completely_resolved.toString()}</p>
-                    <hr />
-                  </div>
-            )}
+          < Medication medication={this.state.medication.attributes} />
+            <ComplicationList complications={this.state.medication.attributes.complications} />
           </>
         )}
       </>

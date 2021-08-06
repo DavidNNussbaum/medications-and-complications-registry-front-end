@@ -42,7 +42,7 @@ const Navbar = (props) =>
     activeStyle={{
       background: 'black'
       }}
-    >Medications</NavLink>
+    >Medications And Complications</NavLink>
     <NavLink
       to="/logout"
       exact
