@@ -10,12 +10,9 @@ import Logoff from './Logoff';
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
  
 class App extends Component {
-  
-
   render() {
     return (
           <>
-           
           <div className="navbar">
           <Router>
             <Navbar />

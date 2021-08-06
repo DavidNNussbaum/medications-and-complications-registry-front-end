@@ -13,9 +13,7 @@ class Medications extends PureComponent {
           return <div>Loading...</div>
         } else {
           return (
-           
-                <MedicationList medications={this.props.medications.medications}/>
-    
+            <MedicationList medications={this.props.medications.medications}/>
           )
         }
       }
