@@ -1,7 +1,9 @@
 import React, { PureComponent} from 'react';
 import { connect } from 'react-redux';
-import fetchMeds from '../actions/medActions'
-import MedicationList from '../lists/MedicationList'
+import fetchMeds from '../actions/medActions';
+import MedicationList from '../lists/MedicationList';
+import LoadingIndicator from './LoadingIndicator';
+import ErrorPage from './ErrorPage';
 
 class Medications extends PureComponent {
     componentDidMount() {
@@ -18,6 +20,13 @@ class Medications extends PureComponent {
         }
       }
     render() {
+      if (!!this.props.loading) {
+        return <LoadingIndicator/>
+      }
+  
+      if (!!this.props.error) {
+        return <ErrorPage error={this.props.error} />
+      }
         return (
             <>
             <h1>Medications</h1>
@@ -38,5 +47,24 @@ const mapStateToProps = state => {
   const mapDispatchToProps = (dispatch) => {
       return {fetchMeds: () => dispatch(fetchMeds())}
   }
+
+  // ----------------------
+  // const mapStateToProps = (currentState) => {
+  //   return {
+  //     todos: currentState.todos.todos,
+  //     loading: currentState.todos.loading,
+  //     error: currentState.todos.error
+  //   }
+  // }
+  
+  // const mapDispatch = (dispatch) => {
+  //   return {
+  //     addTodo: (todo) => dispatch(addTodo(todo)),
+  //     removeTodo: (todoId) => dispatch(removeTodo(todoId)),
+  //     markComplete: (todoId, completionTime) => dispatch(markComplete(todoId, completionTime)),
+  //     fetchTodos: (todos) => dispatch(fetchTodos(todos))
+  //   }
+  // }
+  // -----------------------------------
   
   export default connect(mapStateToProps, mapDispatchToProps)(Medications)
