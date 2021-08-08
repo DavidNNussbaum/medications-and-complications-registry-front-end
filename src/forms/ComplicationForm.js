@@ -26,13 +26,13 @@ const ComplicationForm = (props) => {
     }
    return (
        <form onSubmit={handleSubmit}>
-           <label for="complication_description">Description: </label>
+           <label htmlFor="complication_description">Description: </label>
            <input name="complication_description" id="complication-description"    type="text"/>
-           <label for="complication_severity">Severity (1-10): </label>
+           <label htmlFor="complication_severity">Severity (1-10): </label>
            <input name="complication_severity" id="complication-severity" type="number"/>
-           <label for="complication_duration">Duration: </label>
+           <label htmlFor="complication_duration">Duration: </label>
            <input name="complication_duration" id="complication-duration" type="text"/>
-           <label for="completely_resolved">Completely Resolved (Yes or No): </label>
+           <label htmlFor="completely_resolved">Completely Resolved (Yes or No): </label>
            <input name="completely_resolved" id="completely-resolved" type="boolean"/>
            <input type="submit" value="Submit"/>
        </form>

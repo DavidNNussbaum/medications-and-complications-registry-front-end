@@ -16,7 +16,7 @@ class Medications extends PureComponent {
           return < LoadingIndicator />
         } else {
           return (
-            <MedicationList medications={this.props.medications.medications} addNewComplication={this.props.addNewComplication} addComplications={this.props.addComplications} complications={this.props.complications.complications}/>
+            <MedicationList medications={this.props.medications.medications} addNewComplication={this.props.addNewComplication} addComplications={this.props.addComplications} complications={this.props.complications.complications} deleteComplication={this.props.deleteComplication}/>
           )
         }
       }
@@ -54,7 +54,8 @@ const mapStateToProps = state => {
         addNewComplication: complication => dispatch({type: 'ADD_NEW_COMPLICATION', 
         complication}),
         addComplications: complications => dispatch({type: 'ADD_COMPLICATIONS', 
-        complications})
+        complications}),
+        deleteComplication: complication => dispatch({type: 'DELETE_COMPLICATION', complication})
       }
   }
 

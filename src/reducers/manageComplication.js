@@ -7,9 +7,9 @@ const complicationsReducer = (state = { complications: [], loading: false }, act
           loading: false
         }
         case 'DELETE_COMPLICATION':
+          const complications = state.complications.filter(complication => complication.id !== action.complication.id)
           return {
-            ...state,
-            complications: [...state.complications, action.complication],
+            complications: complications,
             loading: false
           }
           case 'ADD_COMPLICATIONS':
