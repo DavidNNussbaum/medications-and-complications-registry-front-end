@@ -16,7 +16,7 @@ class Medications extends PureComponent {
           return < LoadingIndicator />
         } else {
           return (
-            <MedicationList medications={this.props.medications.medications} addNewComplication={this.props.addNewComplication}/>
+            <MedicationList medications={this.props.medications.medications} addNewComplication={this.props.addNewComplication} addComplications={this.props.addComplications} complications={this.props.complications.complications}/>
           )
         }
       }
@@ -42,6 +42,7 @@ class Medications extends PureComponent {
 const mapStateToProps = state => {
     return {
       medications: state.medications,
+      complications: state.complications,
       loading: state.medications.loading
     }
   }
@@ -50,27 +51,11 @@ const mapStateToProps = state => {
       return {
         fetchMeds: () => dispatch(fetchMeds()),
         addNewMedication: medication => dispatch({type: 'ADD_NEW_MED', medication}),
-        addNewComplication: medication => dispatch({type: 'ADD_NEW_COMP', medication})
+        addNewComplication: complication => dispatch({type: 'ADD_NEW_COMPLICATION', 
+        complication}),
+        addComplications: complications => dispatch({type: 'ADD_COMPLICATIONS', 
+        complications})
       }
   }
 
-  // ----------------------
-  // const mapStateToProps = (currentState) => {
-  //   return {
-  //     todos: currentState.todos.todos,
-  //     loading: currentState.todos.loading,
-  //     error: currentState.todos.error
-  //   }
-  // }
-  
-  // const mapDispatch = (dispatch) => {
-  //   return {
-  //     addTodo: (todo) => dispatch(addTodo(todo)),
-  //     removeTodo: (todoId) => dispatch(removeTodo(todoId)),
-  //     markComplete: (todoId, completionTime) => dispatch(markComplete(todoId, completionTime)),
-  //     fetchTodos: (todos) => dispatch(fetchTodos(todos))
-  //   }
-  // }
-  // -----------------------------------
-  
   export default connect(mapStateToProps, mapDispatchToProps)(Medications)

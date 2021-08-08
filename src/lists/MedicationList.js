@@ -13,9 +13,11 @@ class MedicationList extends Component {
    
   render() {
     const handleChange = (event) => {
+      const selectedMedication = this.props.medications.find(medication => medication.id === event.target.value)
       this.setState({
-        medication: this.props.medications.find(medication => medication.id === event.target.value)
+        medication: selectedMedication
       })
+      this.props.addComplications(selectedMedication.attributes.complications)
     }
     return (
       <>
@@ -28,7 +30,7 @@ class MedicationList extends Component {
         {this.state.medication && (
           <>
           < Medication medication={this.state.medication.attributes} />
-            <ComplicationList complications={this.state.medication.attributes.complications} medicationId={this.state.medication.id} addNewComplication={this.props.addNewComplication}/>
+            <ComplicationList complications={this.props.complications} medicationId={this.state.medication.id} addNewComplication={this.props.addNewComplication}/>
           </>
         )}
       </>

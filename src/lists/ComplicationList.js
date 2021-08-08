@@ -8,7 +8,7 @@ class ComplicationList extends Component {
       <div>
         <h2>Complications</h2>
         {this.props.complications.map(complication => 
-          <Complication complication={complication} />
+          <Complication key={complication.id} complication={complication} />
         )}
           <CreateComplication medicationId={this.props.medicationId} addNewComplication={this.props.addNewComplication}/>
       </div>

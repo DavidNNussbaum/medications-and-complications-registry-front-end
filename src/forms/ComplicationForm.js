@@ -17,8 +17,8 @@ const ComplicationForm = (props) => {
             })
           })
           .then(resp => resp.json())
-          .then(medication => {
-              props.addNewComplication(medication.data)
+          .then(complication => {
+              props.addNewComplication(complication.data.attributes)
               props.setShowForm(false)
           })
         
