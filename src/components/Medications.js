@@ -16,7 +16,7 @@ class Medications extends PureComponent {
           return < LoadingIndicator />
         } else {
           return (
-            <MedicationList medications={this.props.medications.medications}/>
+            <MedicationList medications={this.props.medications.medications} addNewComplication={this.props.addNewComplication}/>
           )
         }
       }
@@ -32,7 +32,7 @@ class Medications extends PureComponent {
             <>
             <h1>Medications</h1>
             <div>
-          <CreateMedication/>
+          <CreateMedication addNewMedication={this.props.addNewMedication}/>
                 {this.handleLoading()}
             </div>
             </>
@@ -47,7 +47,11 @@ const mapStateToProps = state => {
   }
 
   const mapDispatchToProps = (dispatch) => {
-      return {fetchMeds: () => dispatch(fetchMeds())}
+      return {
+        fetchMeds: () => dispatch(fetchMeds()),
+        addNewMedication: medication => dispatch({type: 'ADD_NEW_MED', medication}),
+        addNewComplication: medication => dispatch({type: 'ADD_NEW_COMP', medication})
+      }
   }
 
   // ----------------------

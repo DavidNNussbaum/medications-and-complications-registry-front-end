@@ -1,4 +1,4 @@
-const MedicationForm = () => {
+const MedicationForm = (props) => {
     const handleSubmit = (e) => {
         e.preventDefault()
         fetch('http://localhost:3000/medications', {
@@ -14,7 +14,11 @@ const MedicationForm = () => {
                 }
             })
           })
-        
+        .then(resp => resp.json())
+        .then(medication => {
+            props.addNewMed(medication.data)
+            props.setShowForm(false)
+        })
 
     }
    return (

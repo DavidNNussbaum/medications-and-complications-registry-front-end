@@ -6,12 +6,8 @@ const complicationsReducer = (state = { complications: [], loading: false }, act
           complications: [...state.complications],
           loading: true
         }
-      case 'ADD_COMPLICATIONS':
-        return {
-          ...state,
-          complications: action.complications,
-          loading: false
-        }
+       
+        
       default:
         return state;
     }

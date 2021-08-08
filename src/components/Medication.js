@@ -2,7 +2,6 @@ import React, { Component } from 'react';
  
 class Medication extends Component {
   render() {
-    console.log(this.props)
     return (
       <div>
           <h1>Medication</h1>

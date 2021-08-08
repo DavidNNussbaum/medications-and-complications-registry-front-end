@@ -28,7 +28,7 @@ class MedicationList extends Component {
         {this.state.medication && (
           <>
           < Medication medication={this.state.medication.attributes} />
-            <ComplicationList complications={this.state.medication.attributes.complications} />
+            <ComplicationList complications={this.state.medication.attributes.complications} medicationId={this.state.medication.id} addNewComplication={this.props.addNewComplication}/>
           </>
         )}
       </>

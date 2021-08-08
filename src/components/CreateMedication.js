@@ -1,8 +1,8 @@
-import React, {useState} from "react";
+import {useState} from "react";
 import MedicationForm from '../forms/MedicationForm'
 
 
-const CreateMedication = () => {
+const CreateMedication = (props) => {
     const [showForm, setShowForm] = useState(false)
     const handleClick = () => {
          setShowForm(!showForm)
@@ -10,7 +10,7 @@ const CreateMedication = () => {
      return (
         <>
             <button onClick={handleClick}>Add A New Medication</button>
-            {showForm && <MedicationForm/>}
+            {showForm && <MedicationForm addNewMedication={props.addNewMedication} setShowForm={setShowForm}/>}
        </>
      )
 }
