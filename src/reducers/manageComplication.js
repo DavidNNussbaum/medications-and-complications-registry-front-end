@@ -18,6 +18,13 @@ const complicationsReducer = (state = { complications: [], loading: false }, act
               complications: action.complications,
               loading: false
             }
+          case 'UPDATE_COMPLICATION':
+            const index = state.complications.findIndex(complication => complication.id === action.complication.id)
+          return {
+            ...state,
+            complications: [...state.complications.slice(0, index), action.complication, ...state.complications.slice(index + 1)],
+            loading: false
+          }
        
         
       default:
