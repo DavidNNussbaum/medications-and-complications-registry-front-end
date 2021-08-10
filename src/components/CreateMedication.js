@@ -9,7 +9,7 @@ const CreateMedication = (props) => {
      }
      return (
         <>
-            <button onClick={handleClick}>Add A New Medication</button>
+            <button id='add-med-button' onClick={handleClick}>Add A New Medication</button>
             {showForm && <MedicationForm addNewMedication={props.addNewMedication} setShowForm={setShowForm}/>}
        </>
      )

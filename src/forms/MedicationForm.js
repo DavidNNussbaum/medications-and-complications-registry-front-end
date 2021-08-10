@@ -16,7 +16,7 @@ const MedicationForm = (props) => {
           })
         .then(resp => resp.json())
         .then(medication => {
-            props.addNewMed(medication.data)
+            props.addNewMedication(medication.data)
             props.setShowForm(false)
         })
 

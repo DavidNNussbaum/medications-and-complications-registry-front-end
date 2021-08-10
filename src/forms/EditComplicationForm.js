@@ -12,29 +12,14 @@ class EditComplicationForm extends Component {
       }
       handleChange = event => {
         this.setState({
-            complication_severity: event.target.parentElement.querySelector('#complication-severity').value,
-            complication_duration: event.target.parentElement.querySelector('#complication-duration').value,
-            complication_description: event.target.parentElement.querySelector('#complication-description').value,
-            completely_resolved: event.target.parentElement.querySelector('#completely-resolved').value,
+            [event.target.name]: event.target.value
         });
       };
 
     handleSubmit = (e) => {
         e.preventDefault()
-        fetch(`http://localhost:3000/complications/${this.props.complication.id}`, {
-            method: "PATCH",
-            headers: {
-              "Content-Type": "application/json"
-            },
-            body: JSON.stringify(this.state)
-          })
-          .then(resp => resp.json())
-          .then(complication => {
-              this.props.updateComplication(complication.data.attributes)
-              this.props.setShowForm(false)
-          })
-        
-
+        this.props.updateComplication(this.state, this.props.complication.id)
+        this.props.setShowForm(false)
     }
    render() {
    return (

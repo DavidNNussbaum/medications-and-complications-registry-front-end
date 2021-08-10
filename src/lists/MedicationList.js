@@ -22,7 +22,7 @@ class MedicationList extends Component {
     return (
       <>
         <select onChange={handleChange}>
-          <option>Select A Medication</option>
+          <option id="select-med-button">Select A Medication</option><br/>
           {this.props.medications.map(medication => 
             <option key={medication.id} value={medication.id}>{medication.attributes.name_strength}</option>
             )}
@@ -30,7 +30,7 @@ class MedicationList extends Component {
         {this.state.medication && (
           <>
           < Medication medication={this.state.medication.attributes} />
-            <ComplicationList complications={this.props.complications} medicationId={this.state.medication.id} addNewComplication={this.props.addNewComplication} deleteComplication={this.props.deleteComplication} updateComplication={this.props.updateComplication}/>
+            <ComplicationList complications={this.props.complications} medicationId={this.state.medication.id} addNewComplication={this.props.addNewComplication} deleteComplication={this.props.deleteComplication} updateComplication={this.props.updateComplication} createComplication={this.props.createComplication}/>
           </>
         )}
       </>

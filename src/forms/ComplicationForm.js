@@ -1,43 +1,44 @@
-const ComplicationForm = (props) => {
-    const handleSubmit = (e) => {
-        e.preventDefault()
-        fetch('http://localhost:3000/complications', {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
-                complication: {
-                    complication_severity: e.target.querySelector('#complication-severity').value,
-                    complication_duration: e.target.querySelector('#complication-duration').value,
-                    complication_description: e.target.querySelector('#complication-description').value,
-                    completely_resolved: e.target.querySelector('#completely-resolved').value,
-                    medication_id: props.medicationId
-                }
-            })
-          })
-          .then(resp => resp.json())
-          .then(complication => {
-              props.addNewComplication(complication.data.attributes)
-              props.setShowForm(false)
-          })
-        
+import React, { Component }  from "react"
 
-    }
+class ComplicationForm extends Component {
+        constructor(props) {
+            super(props);
+            this.state = {
+                complication_severity: "", 
+                medication_id: props.medicationId,
+                complication_duration: "",
+                complication_description: "",
+                completely_resolved: "",
+            };
+          }
+          handleChange = event => {
+            this.setState({
+                [event.target.name]: event.target.value
+                 
+            });
+          };
+    
+          
+        handleSubmit = (e) => {
+            e.preventDefault()
+            this.props.createComplication(this.state)
+            this.props.setShowForm(false)
+    } 
+    render() {
    return (
-       <form onSubmit={handleSubmit}>
+       <form onSubmit={this.handleSubmit}>
            <label htmlFor="complication_description">Description: </label>
-           <input name="complication_description" id="complication-description"    type="text"/>
+           <input onChange={this.handleChange} name="complication_description" id="complication-description"    type="text"/>
            <label htmlFor="complication_severity">Severity (1-10): </label>
-           <input name="complication_severity" id="complication-severity" type="number"/>
+           <input onChange={this.handleChange} name="complication_severity" id="complication-severity" type="number"/>
            <label htmlFor="complication_duration">Duration: </label>
-           <input name="complication_duration" id="complication-duration" type="text"/>
+           <input onChange={this.handleChange} name="complication_duration" id="complication-duration" type="text"/>
            <label htmlFor="completely_resolved">Completely Resolved (Yes or No): </label>
-           <input name="completely_resolved" id="completely-resolved" type="boolean"/>
+           <input onChange={this.handleChange} name="completely_resolved" id="completely-resolved" type="boolean"/>
            <input type="submit" value="Submit"/>
        </form>
    )
-}
+}}
 
 export default ComplicationForm;
 

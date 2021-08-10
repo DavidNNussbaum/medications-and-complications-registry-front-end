@@ -1,13 +1,13 @@
 const complicationsReducer = (state = { complications: [], loading: false }, action) => {
     switch(action.type) {
-      case 'ADD_NEW_COMPLICATION':
+      case 'CREATE_COMPLICATION':
         return {
           ...state,
           complications: [...state.complications, action.complication],
           loading: false
         }
         case 'DELETE_COMPLICATION':
-          const complications = state.complications.filter(complication => complication.id !== action.complication.id)
+          const complications = state.complications.filter(complication => complication.id !== action.complicationId)
           return {
             complications: complications,
             loading: false

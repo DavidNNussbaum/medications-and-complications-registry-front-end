@@ -5,6 +5,7 @@ import MedicationList from '../lists/MedicationList';
 import LoadingIndicator from './LoadingIndicator';
 import ErrorPage from './ErrorPage';
 import CreateMedication from './CreateMedication'
+import { editComplication, createAComplication, deleteAComplication } from '../actions/medActions'
 
 class Medications extends PureComponent {
     componentDidMount() {
@@ -16,7 +17,7 @@ class Medications extends PureComponent {
           return < LoadingIndicator />
         } else {
           return (
-            <MedicationList medications={this.props.medications.medications} addNewComplication={this.props.addNewComplication} addComplications={this.props.addComplications} complications={this.props.complications.complications} deleteComplication={this.props.deleteComplication} updateComplication={this.props.updateComplication}/>
+            <MedicationList medications={this.props.medications.medications}  addComplications={this.props.addComplications} complications={this.props.complications.complications} deleteComplication={this.props.deleteComplication} updateComplication={this.props.updateComplication} createComplication={this.props.createComplication}/>
           )
         }
       }
@@ -51,12 +52,11 @@ const mapStateToProps = state => {
       return {
         fetchMeds: () => dispatch(fetchMeds()),
         addNewMedication: medication => dispatch({type: 'ADD_NEW_MED', medication}),
-        addNewComplication: complication => dispatch({type: 'ADD_NEW_COMPLICATION', 
-        complication}),
+        createComplication: complication => dispatch(createAComplication(complication)),
         addComplications: complications => dispatch({type: 'ADD_COMPLICATIONS', 
         complications}),
-        deleteComplication: complication => dispatch({type: 'DELETE_COMPLICATION', complication}),
-        updateComplication: complication => dispatch({type: 'UPDATE_COMPLICATION', complication})
+        deleteComplication: complicationId => dispatch(deleteAComplication(complicationId)),
+        updateComplication: (complication, complicationId) => dispatch(editComplication(complication, complicationId))
       }
   }
 

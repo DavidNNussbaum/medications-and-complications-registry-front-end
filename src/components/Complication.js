@@ -3,10 +3,8 @@ import EditComplicationForm from '../forms/EditComplicationForm'
 
 const Complication = (props) => {
   const handleClick = () => {
-    props.deleteComplication(props.complication) 
-    fetch(`http://localhost:3000/complications/${props.complication.id}`, {
-            method: "DELETE",
-  } ) }
+    props.deleteComplication(props.complication.id) 
+}
   const [showForm, setShowForm] = useState(false)
   const handleEdit = () => {
        setShowForm(!showForm)
