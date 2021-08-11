@@ -50,4 +50,20 @@ export const deleteAComplication = (complicationId) => {
   }
 }
 
+export const createAMedication = (medicationData) => {
+  return dispatch => {
+fetch('http://localhost:3000/medications', {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json"
+            },
+            body: JSON.stringify(medicationData)
+          })
+        .then(resp => resp.json())
+        .then(medication => {
+          dispatch({type: 'CREATE_MEDICATION', medication: medication.data})
+        })
+      }
+    }
+
 export default fetchMeds;

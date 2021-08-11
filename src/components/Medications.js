@@ -5,7 +5,8 @@ import MedicationList from '../lists/MedicationList';
 import LoadingIndicator from './LoadingIndicator';
 import ErrorPage from './ErrorPage';
 import CreateMedication from './CreateMedication'
-import { editComplication, createAComplication, deleteAComplication } from '../actions/medActions'
+import { editComplication, createAComplication, deleteAComplication, createAMedication } from '../actions/medActions'
+
 
 class Medications extends PureComponent {
     componentDidMount() {
@@ -51,7 +52,7 @@ const mapStateToProps = state => {
   const mapDispatchToProps = (dispatch) => {
       return {
         fetchMeds: () => dispatch(fetchMeds()),
-        addNewMedication: medication => dispatch({type: 'ADD_NEW_MED', medication}),
+        addNewMedication: medicationData => dispatch(createAMedication(medicationData)),
         createComplication: complication => dispatch(createAComplication(complication)),
         addComplications: complications => dispatch({type: 'ADD_COMPLICATIONS', 
         complications}),

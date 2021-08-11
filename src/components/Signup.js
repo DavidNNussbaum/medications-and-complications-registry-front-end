@@ -1,10 +1,10 @@
 import SignupForm from '../forms/SignupForm';
 
-function Signup() {
+function Signup(props) {
     return (
     <div>
        <h1>This is signup.</h1>
-    <SignupForm/>
+    <SignupForm setUser={props.setUser}/>
     </div>
     )
 }

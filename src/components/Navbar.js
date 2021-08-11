@@ -19,22 +19,26 @@ const Navbar = (props) =>
         background: 'black'
       }}
     >Home</NavLink>
-    <NavLink
-      to="/login"
-      exact
-      style={link}
-      activeStyle={{
-        background: 'black'
-      }}
-    >Login</NavLink>
-    <NavLink
-      to="/signup"
-      exact
-      style={link}
-      activeStyle={{
-        background: 'black'
-      }}
-    >Signup</NavLink>
+    {props.currentUser.user === null &&
+      <NavLink
+        to="/login"
+        exact
+        style={link}
+        activeStyle={{
+          background: 'black'
+        }}
+      >Login</NavLink>
+    }
+    {props.currentUser.user === null &&
+      <NavLink
+        to="/signup"
+        exact
+        style={link}
+        activeStyle={{
+          background: 'black'
+        }}
+      >Signup</NavLink>
+    }
      <NavLink
     to="/medications"
     exact
@@ -43,14 +47,16 @@ const Navbar = (props) =>
       background: 'black'
       }}
     >Medications And Complications</NavLink>
-    <NavLink
-      to="/logout"
-      exact
-      style={link}
-      activeStyle={{
-        background: 'black'
-      }}
-    >Logout</NavLink>
+    {props.currentUser.user !== null &&
+      <NavLink
+        to="/logout"
+        exact
+        style={link}
+        activeStyle={{
+          background: 'black'
+        }}
+      >Logout</NavLink>
+    }
   </div>;
 
   export default Navbar;
