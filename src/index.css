@@ -13,14 +13,6 @@ code {
     monospace;
 }
 
-/* #add-med-button {
-  position: relative;
-  top: 0px;
-  left: 300px
+#use-line {
+  text-decoration: underline;
 }
-
-#select-med-button {
-  position: relative;
-  top: 0px;
-  left: 150px
-} */

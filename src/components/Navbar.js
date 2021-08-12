@@ -9,7 +9,12 @@ const link = {
   textDecoration: 'none',
   color: 'white',
 }
-const Navbar = (props) =>
+const Navbar = (props) => {
+const handleClick = () => {
+  props.setLogoutUser()
+  
+}
+ return (
   <div>
     <NavLink
       to="/"
@@ -54,9 +59,10 @@ const Navbar = (props) =>
         style={link}
         activeStyle={{
           background: 'black'
-        }}
+        }} onClick={handleClick}
       >Logout</NavLink>
     }
-  </div>;
+  </div> )
+}
 
   export default Navbar;

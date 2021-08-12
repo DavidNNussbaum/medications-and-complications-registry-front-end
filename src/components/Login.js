@@ -1,88 +1,16 @@
-function Login() {
+import LoginForm from '../forms/LoginForm';
+import { useState } from 'react'
+ 
+const Login = (props) => {
+    const [showForm, setShowForm] = useState(true)
     return (
-    <div>
-       <h1>This is login.</h1>
-       <button>Login Here</button>
-    </div>
+        <div>
+            { showForm && <LoginForm setLoginUser={props.setLoginUser} setShowForm={setShowForm} /> }
+            { props.currentUser.user && <h2>{`${props.currentUser.user.user.data.attributes.first_name}, you have successfully logged in. Press on the Navigation Bar Medications and Complications tab to continue.`}</h2> } 
+        </div>
     )
 }
      
 export default Login;
 
-// import React from "react";
-// import { connect } from "react-redux";
-// import { loginUser } from "../actions/index";
-
-// class Login extends React.Component {
-//   state = {
-//     email: "",
-//     password: "",
-//     error: false
-//   };
-
-//   handleChange = (event) => {
-//     this.setState({
-//       [event.target.name]: event.target.value
-//     });
-//   };
-
-//   handleSubmit = (event) => {
-//     event.preventDefault();
-//     const { email, password } = this.state;
-//     this.props
-//       .dispatchLoginUser({ email, password })
-//       .then(() => this.props.history.push("/"))
-//       .catch(() => this.setState({ error: true }));
-//   };
-
-//   render() {
-//     return (
-//       <form
-//         onSubmit={this.handleSubmit}
-//         className='w-11/12 max-w-2xl mx-auto mt-8'
-//       >
-//         <h1 className='font-bold text-3xl'>Log In</h1>
-//         <p className="h-8 text-red-400">{this.state.error && "Invalid email or password"}</p>
-//         <fieldset>
-//           <label className='block uppercase mb-2' htmlFor='email'>
-//             Email:
-//           </label>
-//           <input
-//             type='text'
-//             name='email'
-//             id='email'
-//             className='w-full border-2 focus:outline-none focus:ring-2 p-4 mb-4'
-//             onChange={this.handleChange}
-//             value={this.state.email}
-//           />
-//         </fieldset>
-//         <fieldset>
-//           <label className='block uppercase mb-2' htmlFor='password'>
-//             Password:
-//           </label>
-//           <input
-//             type='password'
-//             name='password'
-//             id='password'
-//             className="w-full border-2 focus:outline-none focus:ring-2 p-4 mb-4"
-//             onChange={this.handleChange}
-//             value={this.state.password}
-//           />
-//         </fieldset>
-//         <input
-//           className='w-full text-center uppercase p-4 bg-blue-300 cursor-pointer mt-4'
-//           type='submit'
-//           value='Log In'
-//         />
-//       </form>
-//     );
-//   }
-// }
-
-// const mapDispatchToProps = (dispatch) => {
-//   return {
-//     dispatchLoginUser: (credentials) => dispatch(loginUser(credentials))
-//   };
-// };
-
-// export default connect(null, mapDispatchToProps)(Login);
+ 

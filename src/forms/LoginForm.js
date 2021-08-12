@@ -1,14 +1,14 @@
 import React, { Component } from "react"
+ 
 
-class SignupForm extends Component {
+class LoginForm extends Component {
 
     constructor(props) {
         super(props);
         this.state = {
-            first_name: "",
             email: "",
             password: "",
-            password_confirmation: "",
+             
         };
       }
       handleChange = event => {
@@ -19,18 +19,12 @@ class SignupForm extends Component {
 
     handleSubmit = (event) => {
        event.preventDefault()
-       this.props.setSignupUser(this.state)
+       this.props.setLoginUser(this.state)
        this.props.setShowForm(false)
     }
     render() {
     return(
    <form onSubmit={this.handleSubmit}>
-      <label htmlFor="first_name"> 
-          First Name: 
-      </label>
-<br/>
-
- <input onChange={this.handleChange} name="first_name" type="text" id="first-name"/><br/>
  <label htmlFor="email"> 
           Email: 
       </label>
@@ -41,11 +35,6 @@ class SignupForm extends Component {
       </label>
 <br/>
  <input onChange={this.handleChange} name="password" type="password" id="password"/><br/>
- <label htmlFor="password_confirmation"> 
-          Repeat Password: 
-      </label>
-<br/>
- <input onChange={this.handleChange} name="password_confirmation" type="password" id="password-confirmation"/><br/>
  <input type="submit" value="Submit"/> 
 </form>
     )
@@ -53,4 +42,4 @@ class SignupForm extends Component {
 }
 
 
-export default SignupForm;
+export default LoginForm;
