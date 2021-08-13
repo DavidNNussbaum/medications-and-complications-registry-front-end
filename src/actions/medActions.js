@@ -10,12 +10,13 @@ const fetchMeds = () => {
   }
 }
 
-export const editComplication = (complicationData, complicationId) => {
+export const editComplication = (complicationData, complicationId, token) => {
   return dispatch => {
     fetch(`http://localhost:3000/complications/${complicationId}`, {
       method: "PATCH",
       headers: {
-        "Content-Type": "application/json"
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${token}`
       },
       body: JSON.stringify(complicationData)
     })
@@ -25,12 +26,13 @@ export const editComplication = (complicationData, complicationId) => {
     })
   }
 }
-export const createAComplication = (complicationData) => {
+export const createAComplication = (complicationData, token) => {
   return dispatch => {
     fetch('http://localhost:3000/complications', {
           method: "POST",
           headers: {
-            "Content-Type": "application/json"
+            "Content-Type": "application/json", 
+            "Authorization": `Bearer ${token}`
           },
           body: JSON.stringify(complicationData)
         })
@@ -39,10 +41,13 @@ export const createAComplication = (complicationData) => {
           dispatch({type: 'CREATE_COMPLICATION', complication: complication.data.attributes})
         })} }
 
-export const deleteAComplication = (complicationId) => {
+export const deleteAComplication = (complicationId, token) => {
   return dispatch => {
     fetch(`http://localhost:3000/complications/${complicationId}`, {
       method: "DELETE",
+      headers: {
+        "Authorization": `Bearer ${token}`
+      }, 
     })
     .then(complication => {
       dispatch({type: 'DELETE_COMPLICATION', complicationId: complicationId})

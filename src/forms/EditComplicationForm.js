@@ -18,7 +18,7 @@ class EditComplicationForm extends Component {
 
     handleSubmit = (e) => {
         e.preventDefault()
-        this.props.updateComplication(this.state, this.props.complication.id)
+        this.props.updateComplication(this.state, this.props.complication.id, this.props.currentUser.user.token)
         this.props.setShowForm(false)
     }
    render() {

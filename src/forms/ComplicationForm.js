@@ -21,7 +21,7 @@ class ComplicationForm extends Component {
           
         handleSubmit = (e) => {
             e.preventDefault()
-            this.props.createComplication(this.state)
+            this.props.createComplication(this.state, this.props.currentUser.user.token)
             this.props.setShowForm(false)
     } 
     render() {

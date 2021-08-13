@@ -30,8 +30,11 @@ class App extends Component {
               <Route path="/signup">
                 <Signup setSignupUser={this.props.setSignupUser} currentUser={this.props.currentUser}/>
               </Route>
-              <Route path="/medications" component={Medications}/>
-              <Route path="/logout" />
+              <Route path="/medications" >
+                <Medications currentUser={this.props.currentUser}/>
+                </Route>
+
+              <Route path="/logout" component={Logout}/>
                  
             </Switch>
           </Router>

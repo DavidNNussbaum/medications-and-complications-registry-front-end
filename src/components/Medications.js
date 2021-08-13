@@ -18,7 +18,7 @@ class Medications extends PureComponent {
           return < LoadingIndicator />
         } else {
           return (
-            <MedicationList medications={this.props.medications.medications}  addComplications={this.props.addComplications} complications={this.props.complications.complications} deleteComplication={this.props.deleteComplication} updateComplication={this.props.updateComplication} createComplication={this.props.createComplication}/>
+            <MedicationList medications={this.props.medications.medications}  addComplications={this.props.addComplications} complications={this.props.complications.complications} deleteComplication={this.props.deleteComplication} updateComplication={this.props.updateComplication} createComplication={this.props.createComplication} currentUser={this.props.currentUser}/>
           )
         }
       }
@@ -34,7 +34,9 @@ class Medications extends PureComponent {
             <>
             <h1>Medications</h1>
             <div>
+            { this.props.currentUser.user && (
           <CreateMedication addNewMedication={this.props.addNewMedication}/>
+            )}
                 {this.handleLoading()}
             </div>
             </>
@@ -53,11 +55,11 @@ const mapStateToProps = state => {
       return {
         fetchMeds: () => dispatch(fetchMeds()),
         addNewMedication: medicationData => dispatch(createAMedication(medicationData)),
-        createComplication: complication => dispatch(createAComplication(complication)),
+        createComplication: (complication, token) => dispatch(createAComplication(complication, token)),
         addComplications: complications => dispatch({type: 'ADD_COMPLICATIONS', 
         complications}),
-        deleteComplication: complicationId => dispatch(deleteAComplication(complicationId)),
-        updateComplication: (complication, complicationId) => dispatch(editComplication(complication, complicationId))
+        deleteComplication: (complicationId, token) => dispatch(deleteAComplication(complicationId, token)),
+        updateComplication: (complication, complicationId, token) => dispatch(editComplication(complication, complicationId, token))
       }
   }
 
