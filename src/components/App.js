@@ -10,9 +10,15 @@ import Signup from './Signup';
 import Logout from './Logout'
 import { signupUser } from '../actions/auth.js'
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
-import { loginUser } from '../actions/auth.js';
+import { loginUser, checkAuth } from '../actions/auth.js';
+
  
 class App extends Component {
+
+  componentDidMount() {
+    this.props.checkAuth()
+  }
+
   render() {
     return (
           <>
@@ -54,7 +60,8 @@ const mapDispatchToProps = (dispatch) => {
     return {
       setSignupUser: user => dispatch(signupUser(user)),
       setLoginUser: user => dispatch(loginUser(user)),
-      setLogoutUser: () => dispatch({type: 'LOGOUT_USER'})
+      setLogoutUser: () => dispatch({type: 'LOGOUT_USER'}),
+      checkAuth: () => dispatch(checkAuth())
     }
 }
 

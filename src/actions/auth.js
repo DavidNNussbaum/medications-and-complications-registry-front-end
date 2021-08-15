@@ -69,3 +69,26 @@ export const loginUser = (userData) => {
         });
     };
 };
+
+export const checkAuth = () => {
+    return (dispatch) => {
+      return fetch("http://localhost:3000/current_user", {
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+          Authorization: getToken()
+        }
+      }).then((res) => {
+
+        if (res.ok) {
+          return res
+                  .json()
+                  .then(user => dispatch({type: "SET_USER", payload: user}))
+        } else {
+        //   return Promise.reject(dispatch({type: "LOGOUT_USER"}))
+            dispatch({type: "LOGOUT_USER"})
+        }
+      })
+      
+    };
+  };

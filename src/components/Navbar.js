@@ -14,6 +14,7 @@ const handleClick = () => {
   props.setLogoutUser()
   
 }
+console.log(props)
  return (
   <div>
     <NavLink
@@ -24,7 +25,7 @@ const handleClick = () => {
         background: 'black'
       }}
     >Home</NavLink>
-    {props.currentUser.user === null &&
+    {props.currentUser.user === {}  &&
       <NavLink
         to="/login"
         exact
@@ -34,7 +35,7 @@ const handleClick = () => {
         }}
       >Login</NavLink>
     }
-    {props.currentUser.user === null &&
+  {props.currentUser.user === {} &&
       <NavLink
         to="/signup"
         exact

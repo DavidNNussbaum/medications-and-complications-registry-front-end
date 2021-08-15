@@ -1,9 +1,7 @@
-import React, { Component} from 'react';
 import Complication from '../components/Complication';
 import CreateComplication from '../components/CreateComplication';
 
-class ComplicationList extends Component {
-  render() {
+const ComplicationList = () => {
     return ( 
       <div>
         {this.props.complications.length > 0 && <h2>Complications</h2>}
@@ -14,8 +12,9 @@ class ComplicationList extends Component {
         { this.props.currentUser.user && (
           <CreateComplication medicationId={this.props.medicationId} createComplication={this.props.createComplication} currentUser={this.props.currentUser}/>) }
       </div>
-    ) }
+    ) 
   }
+  
 
 
 export default ComplicationList;
