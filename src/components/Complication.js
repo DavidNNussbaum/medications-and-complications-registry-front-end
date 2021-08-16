@@ -14,7 +14,7 @@ const Complication = (props) => {
         <p>Description: {props.complication.complication_description}</p>
         <p>Severity (1-10): {props.complication.complication_severity}</p>
         <p>Duration: {props.complication.complication_duration}</p>
-        <p>Completely Resolved (Yes or No): {props.complication.completely_resolved.toString()}</p>
+        <p>{props.complication.completely_resolved ? "Completely Resolved." : "Not Completely Resolved."}</p>
         { (props.currentUser.user && props.currentUser.user.user.data.attributes.id === props.complication.user_id) && (
           <>
           <button onClick={handleEdit}>Edit This Complication</button>

@@ -19,7 +19,9 @@ class MedicationForm extends Component {
     handleSubmit = (e) => {
         e.preventDefault()
             this.props.addNewMedication(this.state)
-            this.props.setShowForm(false)
+                this.props.setShowForm(false)
+           
+            
     }
 render() {
    return (

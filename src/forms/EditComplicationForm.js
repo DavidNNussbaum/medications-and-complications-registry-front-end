@@ -30,8 +30,10 @@ class EditComplicationForm extends Component {
            <input name="complication_severity" id="complication-severity" type="number" onChange={this.handleChange} value={this.state.complication_severity}/>
            <label htmlFor="complication_duration">Duration: </label>
            <input name="complication_duration" id="complication-duration" type="text" onChange={this.handleChange} value={this.state.complication_duration}/>
-           <label htmlFor="completely_resolved">Completely Resolved (Yes or No): </label>
-           <input name="completely_resolved" id="completely-resolved" type="boolean" onChange={this.handleChange} value={this.state.completely_resolved.toString()}/>
+           <input type="radio" onChange={this.handleChange} name="completely_resolved" value="true" defaultChecked={this.state.completely_resolved} />
+           <label htmlFor="true">Completely Resolved</label>
+           <input type="radio" onChange={this.handleChange} name="completely_resolved" value="false" defaultChecked={this.state.completely_resolved === false}/>
+           <label htmlFor="false">Not Completely Resolved</label>
            <input type="submit" value="Submit"/>
        </form>
    )

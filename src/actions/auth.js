@@ -25,11 +25,12 @@ export const signupUser = (userData) => {
             })
         }).then((resp) => {
             if (resp.ok) {
-                setToken(resp.headers.get("Authorization"));
                 return resp
                     .json()
-                    .then((userJson) =>
+                    .then((userJson) => {
+                        setToken(userJson.token);
                         dispatch({ type: "SET_USER", user: userJson })
+                    }
                     );
             } else {
                 // return resp.json().then((errors) => {
@@ -54,11 +55,13 @@ export const loginUser = (userData) => {
             })
         }).then((resp) => {
             if (resp.ok) {
-                setToken(resp.headers.get("Authorization"));
                 return resp
                     .json()
-                    .then((userJson) =>
+                    .then((userJson) => {
+                        setToken(userJson.token);
                         dispatch({ type: "SET_USER", user: userJson })
+                    }
+                        
                     );
             } else {
                 // return resp.json().then((errors) => {
@@ -76,14 +79,15 @@ export const checkAuth = () => {
         headers: {
           Accept: "application/json",
           "Content-Type": "application/json",
-          Authorization: getToken()
+          Authorization: `Bearer ${getToken()}`
         }
       }).then((res) => {
 
         if (res.ok) {
           return res
                   .json()
-                  .then(user => dispatch({type: "SET_USER", payload: user}))
+                  .then(user => {
+                      dispatch({type: "SET_USER", user: user})})
         } else {
         //   return Promise.reject(dispatch({type: "LOGOUT_USER"}))
             dispatch({type: "LOGOUT_USER"})

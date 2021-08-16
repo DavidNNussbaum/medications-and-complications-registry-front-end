@@ -20,13 +20,11 @@ class Medications extends PureComponent {
           return (
             <MedicationList medications={this.props.medications.medications}  addComplications={this.props.addComplications} complications={this.props.complications.complications} deleteComplication={this.props.deleteComplication} updateComplication={this.props.updateComplication} createComplication={this.props.createComplication} currentUser={this.props.currentUser}/>
           )
-        }
-      }
+        }}
     render() {
       if (!!this.props.loading) {
         return <LoadingIndicator/>
       }
-  
       if (!!this.props.error) {
         return <ErrorPage error={this.props.error} />
       }

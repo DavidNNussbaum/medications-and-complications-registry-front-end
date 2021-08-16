@@ -64,9 +64,20 @@ fetch('http://localhost:3000/medications', {
             },
             body: JSON.stringify(medicationData)
           })
-        .then(resp => resp.json())
-        .then(medication => {
-          dispatch({type: 'CREATE_MEDICATION', medication: medication.data})
+        .then(resp => {
+          if (resp.ok) {
+            resp.json()
+            .then(medication => {
+              dispatch({type: 'CREATE_MEDICATION', medication: medication.data})
+            })
+          }
+           else {
+             return resp.json()
+             .then(json => {
+              return {error: true, errorMessage: json.error}
+             })
+             
+           }
         })
       }
     }

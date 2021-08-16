@@ -1,7 +1,6 @@
-const userReducer = (state = { user: {}, authChecked: false, loggedIn: false}, action) => {
+const userReducer = (state = { user: null, authChecked: false, loggedIn: false}, action) => {
     switch(action.type) {
       case 'SET_USER':
-
         return {
           authChecked: true, 
           loggedIn: true,
@@ -9,10 +8,11 @@ const userReducer = (state = { user: {}, authChecked: false, loggedIn: false}, a
         }
 
     case 'LOGOUT_USER':
+      localStorage.removeItem("token")
       return {
         authChecked: true, 
         loggedIn: false,
-        user: {},
+        user: null,
       }  
       default:
         return state;

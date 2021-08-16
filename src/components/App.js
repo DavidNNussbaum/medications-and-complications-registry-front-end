@@ -30,9 +30,6 @@ class App extends Component {
               <Route path="/login" >
                 <Login setLoginUser={this.props.setLoginUser} currentUser={this.props.currentUser}/> 
               </Route>
-              {/* <Route exact path="/login" render={routeProps => {
-                <Login {...routeProps} setLoginUser={this.props.setLoginUser} currentUser={this.props.currentUser}/>
-              }} /> */}
               <Route path="/signup">
                 <Signup setSignupUser={this.props.setSignupUser} currentUser={this.props.currentUser}/>
               </Route>

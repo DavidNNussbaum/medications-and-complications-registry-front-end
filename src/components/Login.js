@@ -2,7 +2,8 @@ import LoginForm from '../forms/LoginForm';
 import { useState } from 'react'
  
 const Login = (props) => {
-    const [showForm, setShowForm] = useState(true)
+
+    const [showForm, setShowForm] = useState(props.currentUser.user === null)
     return (
         <div>
             { showForm && <LoginForm setLoginUser={props.setLoginUser} setShowForm={setShowForm} /> }

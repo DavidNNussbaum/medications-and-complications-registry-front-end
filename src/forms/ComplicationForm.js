@@ -16,6 +16,7 @@ class ComplicationForm extends Component {
                 [event.target.name]: event.target.value
                  
             });
+            console.log(this.state)
           };
     
           
@@ -33,8 +34,10 @@ class ComplicationForm extends Component {
            <input onChange={this.handleChange} name="complication_severity" id="complication-severity" type="number"/>
            <label htmlFor="complication_duration">Duration: </label>
            <input onChange={this.handleChange} name="complication_duration" id="complication-duration" type="text"/>
-           <label htmlFor="completely_resolved">Completely Resolved (Yes or No): </label>
-           <input onChange={this.handleChange} name="completely_resolved" id="completely-resolved" type="boolean"/>
+           <input type="radio" onChange={this.handleChange} name="completely_resolved" value="true"/>
+           <label htmlFor="true">Completely Resolved</label>
+           <input type="radio" onChange={this.handleChange} name="completely_resolved" value="false"/>
+           <label htmlFor="false">Not Completely Resolved</label>
            <input type="submit" value="Submit"/>
        </form>
    )
