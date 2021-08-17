@@ -10,7 +10,7 @@ const CreateComplication = (props) => {
      return (
         <>
             <button onClick={handleClick}>Add A New Complication</button>
-            {showForm && <ComplicationForm setShowForm={setShowForm} medicationId={props.medicationId} createComplication={props.createComplication} currentUser={props.currentUser}/>}
+            {showForm && <ComplicationForm setShowForm={setShowForm} medicationId={props.medicationId}/>}
        </>
      )
 }

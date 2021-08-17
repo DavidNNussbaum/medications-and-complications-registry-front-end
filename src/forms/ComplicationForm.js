@@ -1,4 +1,6 @@
 import React, { Component }  from "react"
+import { connect } from 'react-redux';
+import { createAComplication } from '../actions/medActions';
 
 class ComplicationForm extends Component {
         constructor(props) {
@@ -43,5 +45,17 @@ class ComplicationForm extends Component {
    )
 }}
 
-export default ComplicationForm;
+const mapStateToProps = state => {
+    return {
+        currentUser: state.user
+    }
+  }
+
+  const mapDispatchToProps = (dispatch) => {
+      return {
+        createAComplication: complication => dispatch(createAComplication(complication)),
+      }
+  }
+
+export default connect(mapStateToProps, mapDispatchToProps)(ComplicationForm);
 

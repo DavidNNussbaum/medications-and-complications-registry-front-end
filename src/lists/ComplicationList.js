@@ -10,7 +10,7 @@ const ComplicationList = (props) => {
           <Complication key={complication.id} complication={complication} deleteComplication={props.deleteComplication} updateComplication={props.updateComplication} currentUser={props.currentUser}/>
         )}
         {props.currentUser.user && (
-          <CreateComplication medicationId={props.medicationId} createComplication={props.createComplication} currentUser={props.currentUser}/>) }
+          <CreateComplication medicationId={props.medicationId}/>) }
       </div>
     ) 
   }

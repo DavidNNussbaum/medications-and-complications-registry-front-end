@@ -74,7 +74,8 @@ fetch('http://localhost:3000/medications', {
            else {
              return resp.json()
              .then(json => {
-              return {error: true, errorMessage: json.error}
+              dispatch({type: 'ERROR', errorMessage: json.error })
+              // return {error: true, errorMessage: }
              })
              
            }
