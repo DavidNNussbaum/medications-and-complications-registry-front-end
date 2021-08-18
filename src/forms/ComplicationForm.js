@@ -24,10 +24,12 @@ class ComplicationForm extends Component {
           
         handleSubmit = (e) => {
             e.preventDefault()
-            this.props.createComplication(this.state, this.props.currentUser.user.token)
+            console.log('complication form submitting: ', this.props.currentUser.user.token)
+            this.props.createAComplication(this.state, this.props.currentUser.user.token)
             this.props.setShowForm(false)
     } 
     render() {
+      console.log('complication form: ', this.props.currentUser.user.token)
    return (
        <form onSubmit={this.handleSubmit}>
            <label htmlFor="complication_description">Description: </label>
@@ -53,7 +55,7 @@ const mapStateToProps = state => {
 
   const mapDispatchToProps = (dispatch) => {
       return {
-        createAComplication: complication => dispatch(createAComplication(complication)),
+        createAComplication: (complication, token) => dispatch(createAComplication(complication, token)),
       }
   }
 

@@ -1,4 +1,4 @@
-const medicationsReducer = (state = { medications: [], loading: false }, action) => {
+const medicationsReducer = (state = { medications: [], loading: false, error: '' }, action) => {
     switch(action.type) {
       case 'LOADING_MEDICATIONS':
         return {
@@ -10,13 +10,15 @@ const medicationsReducer = (state = { medications: [], loading: false }, action)
         return {
           ...state,
           medications: action.medications,
-          loading: false
+          loading: false,
+          error: ''
         }
       case 'CREATE_MEDICATION':
         return {
           ...state,
           medications: [...state.medications, action.medication],
-          loading: false
+          loading: false,
+          error: ''
         }
         case 'ADD_NEW_COMP':
 
@@ -29,6 +31,8 @@ const medicationsReducer = (state = { medications: [], loading: false }, action)
                     ...state.medications.slice(index + 1)
                 ], loading: false} 
             ): state
+        case 'ERROR':
+          return {...state, error: action.errorMessage}
       default:
         return state;
     }

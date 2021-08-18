@@ -2,6 +2,7 @@ import Complication from '../components/Complication';
 import CreateComplication from '../components/CreateComplication';
 
 const ComplicationList = (props) => {
+  console.log('complication list props: ', props)
     return ( 
       <div>
         {props.complications.length > 0 && <h2>Complications</h2>}

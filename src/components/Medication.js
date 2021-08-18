@@ -14,4 +14,5 @@ class Medication extends Component {
   }
 };
 
+ 
 export default Medication;
