@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import Medication from '../components/Medication';
 import ComplicationList from './ComplicationList'
 
@@ -36,7 +37,7 @@ class MedicationList extends Component {
         {this.state.medication && (
           <>
             < Medication medication={this.state.medication.attributes} />
-            <ComplicationList complications={this.props.complications} medicationId={this.state.medication.id} deleteComplication={this.props.deleteComplication} updateComplication={this.props.updateComplication} createComplication={this.props.createComplication} currentUser={this.props.currentUser}/>
+            <ComplicationList complications={this.props.complications} medicationId={this.state.medication.id} currentUser={this.props.currentUser}/>
           </>
         )}
       </>
@@ -44,4 +45,21 @@ class MedicationList extends Component {
   }
 }
 
-export default MedicationList;
+const mapStateToProps = state => {
+  return {
+      currentUser: state.user
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+      addComplications: complications => dispatch({type: 'ADD_COMPLICATIONS', 
+      complications}),
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(MedicationList);
+
+
+
+ 

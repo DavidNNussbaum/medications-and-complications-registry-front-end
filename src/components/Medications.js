@@ -5,9 +5,7 @@ import MedicationList from '../lists/MedicationList';
 import LoadingIndicator from './LoadingIndicator';
 import ErrorPage from './ErrorPage';
 import CreateMedication from './CreateMedication'
-import { editComplication, createAComplication, deleteAComplication, createAMedication } from '../actions/medActions'
-
-
+ 
 class Medications extends PureComponent {
     componentDidMount() {
         this.props.fetchMeds()
@@ -18,7 +16,7 @@ class Medications extends PureComponent {
           return < LoadingIndicator />
         } else {
           return (
-            <MedicationList medications={this.props.medications.medications}  addComplications={this.props.addComplications} complications={this.props.complications.complications} deleteComplication={this.props.deleteComplication} updateComplication={this.props.updateComplication}  currentUser={this.props.currentUser}/>
+            <MedicationList medications={this.props.medications.medications}   complications={this.props.complications.complications} currentUser={this.props.currentUser}/>
           )
         }}
     render() {
@@ -33,7 +31,7 @@ class Medications extends PureComponent {
             <h1>Medications</h1>
             <div>
             { this.props.currentUser.user && (
-          <CreateMedication addNewMedication={this.props.addNewMedication}/>
+          <CreateMedication />
             )}
                 {this.handleLoading()}
             </div>
@@ -53,11 +51,6 @@ const mapStateToProps = state => {
   const mapDispatchToProps = (dispatch) => {
       return {
         fetchMeds: () => dispatch(fetchMeds()),
-        addNewMedication: medicationData => dispatch(createAMedication(medicationData)),
-        addComplications: complications => dispatch({type: 'ADD_COMPLICATIONS', 
-        complications}),
-        deleteComplication: (complicationId, token) => dispatch(deleteAComplication(complicationId, token)),
-        updateComplication: (complication, complicationId, token) => dispatch(editComplication(complication, complicationId, token))
       }
   }
 

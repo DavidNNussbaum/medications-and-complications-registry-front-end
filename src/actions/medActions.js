@@ -12,7 +12,7 @@ const fetchMeds = () => {
 
 export const editComplication = (complicationData, complicationId, token) => {
   return dispatch => {
-    fetch(`http://localhost:3000/complications/${complicationId}`, {
+    return fetch(`http://localhost:3000/complications/${complicationId}`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
@@ -20,15 +20,25 @@ export const editComplication = (complicationData, complicationId, token) => {
       },
       body: JSON.stringify(complicationData)
     })
-    .then(resp => resp.json())
-    .then(complication => {
-        dispatch({type: 'UPDATE_COMPLICATION', complication: complication.data.attributes})
+    .then(resp => {
+      if (resp.ok) {
+        resp.json()
+        .then(complication => {
+          dispatch({type: 'UPDATE_COMPLICATION', complication: complication.data.attributes})
+        })
+      } else {
+         return resp.json()
+         .then(json => {
+           return Promise.reject(json.error)
+         })
+      }
     })
   }
 }
+// dispatch({type: 'UPDATE_COMPLICATION', complication: complication.data.attributes})
 export const createAComplication = (complicationData, token) => {
   return dispatch => {
-    fetch('http://localhost:3000/complications', {
+    return fetch('http://localhost:3000/complications', {
           method: "POST",
           headers: {
             "Content-Type": "application/json", 
@@ -36,10 +46,24 @@ export const createAComplication = (complicationData, token) => {
           },
           body: JSON.stringify(complicationData)
         })
-        .then(resp => resp.json())
-        .then(complication => {
-          dispatch({type: 'CREATE_COMPLICATION', complication: complication.data.attributes})
-        })} }
+        .then(resp => {
+          if (resp.ok) {
+            resp.json()
+            .then(complication => {
+                dispatch({type: 'CREATE_COMPLICATION', complication: complication.data.attributes})
+            })
+          } else {
+             return resp.json()
+             .then(json => {
+               return Promise.reject(json.error)
+             })
+          }
+        })
+      }}
+        // .then(resp => {resp.json())
+        // .then(complication => {
+        //   dispatch({type: 'CREATE_COMPLICATION', complication: complication.data.attributes})
+        // })} }
 
 export const deleteAComplication = (complicationId, token) => {
   return dispatch => {
@@ -57,7 +81,7 @@ export const deleteAComplication = (complicationId, token) => {
 
 export const createAMedication = (medicationData) => {
   return dispatch => {
-fetch('http://localhost:3000/medications', {
+  return fetch('http://localhost:3000/medications', {
             method: "POST",
             headers: {
               "Content-Type": "application/json"
@@ -75,7 +99,7 @@ fetch('http://localhost:3000/medications', {
              return resp.json()
              .then(json => {
               dispatch({type: 'ERROR', errorMessage: json.error })
-              // return {error: true, errorMessage: }
+              return Promise.reject(json.error)
              })
              
            }

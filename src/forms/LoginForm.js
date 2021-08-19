@@ -7,6 +7,7 @@ class LoginForm extends Component {
         this.state = {
             email: "",
             password: "",
+            errors: '',
              
         };
       }
@@ -19,12 +20,15 @@ class LoginForm extends Component {
     handleSubmit = (event) => {
        event.preventDefault()
        this.props.setLoginUser(this.state)
-       this.props.setShowForm(false)
+       .then(() => this.props.setShowForm(false))
+       .catch((errors) => this.setState({ errors: errors }));
+       
     }
     render() {
     return(
    <form onSubmit={this.handleSubmit}>
- <label htmlFor="email"> 
+     {this.state.errors && <p>{this.state.errors}</p>}
+     <label htmlFor="email"> 
           Email: 
       </label>
 <br/>

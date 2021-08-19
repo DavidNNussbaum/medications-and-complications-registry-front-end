@@ -9,6 +9,7 @@ class MedicationForm extends Component {
             name_strength: "", 
             frequency: "",
             administration_route: "",
+            errors: "",
         };
       }
       handleChange = event => {
@@ -20,18 +21,15 @@ class MedicationForm extends Component {
 
     handleSubmit = (e) => {
         e.preventDefault()
-            this.props.addNewMedication(this.state)
-            if (!this.props.state.medications.error) {
-                // this.props.setShowForm(false)
-            } 
-               
+        this.props.addNewMedication(this.state)
+        .then(() => this.props.setShowForm(false))
+        .catch((errors) => this.setState({ errors: errors }));
            
-            
     }
 render() {
    return (
        <form onSubmit={this.handleSubmit}>
-           {this.props.state.medications.error && <p>{this.props.state.medications.error}</p>}
+           {this.state.errors && <p>{this.state.errors}</p>}
            <label for="name_strength">Name/Strength: </label>
            <input onChange={this.handleChange} name="name_strength" id="name-strength" type="text"/>
            <label for="frequency">Frequency: </label>

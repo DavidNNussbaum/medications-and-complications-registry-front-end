@@ -1,4 +1,6 @@
 import React, { Component} from "react"
+import { connect } from 'react-redux';
+import { editComplication } from '../actions/medActions';
 
 class EditComplicationForm extends Component {
     constructor(props) {
@@ -8,6 +10,7 @@ class EditComplicationForm extends Component {
             complication_duration: this.props.complication.complication_duration,
             complication_description: this.props.complication.complication_description,
             completely_resolved: this.props.complication.completely_resolved,
+            errors: '',
         };
       }
       handleChange = event => {
@@ -19,11 +22,14 @@ class EditComplicationForm extends Component {
     handleSubmit = (e) => {
         e.preventDefault()
         this.props.updateComplication(this.state, this.props.complication.id, this.props.currentUser.user.token)
-        this.props.setShowForm(false)
+        .then(() => this.props.setShowForm(false))
+        .catch((errors) => this.setState({ errors: errors }));
+        
     }
    render() {
    return (
        <form onSubmit={this.handleSubmit}>
+           {this.state.errors && <p>{this.state.errors}</p>}
            <label htmlFor="complication_description">Description: </label>
            <input name="complication_description" id="complication-description"    type="text" onChange={this.handleChange} value={this.state.complication_description} />
            <label htmlFor="complication_severity">Severity (1-10): </label>
@@ -40,7 +46,23 @@ class EditComplicationForm extends Component {
     }
 }
 
-export default EditComplicationForm;
+const mapStateToProps = state => {
+    return {
+        currentUser: state.user
+    }
+  }
+
+  const mapDispatchToProps = (dispatch) => {
+      return {
+        updateComplication: (complication, complicationId, token) => dispatch(editComplication(complication, complicationId, token)),
+      }
+  }
+
+export default connect(mapStateToProps, mapDispatchToProps)(EditComplicationForm);
+
+
+
+ 
 
 
       

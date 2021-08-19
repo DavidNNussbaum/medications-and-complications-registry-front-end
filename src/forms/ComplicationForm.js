@@ -11,6 +11,7 @@ class ComplicationForm extends Component {
                 complication_duration: "",
                 complication_description: "",
                 completely_resolved: "",
+                errors: '',
             };
           }
           handleChange = event => {
@@ -24,14 +25,16 @@ class ComplicationForm extends Component {
           
         handleSubmit = (e) => {
             e.preventDefault()
-            console.log('complication form submitting: ', this.props.currentUser.user.token)
             this.props.createAComplication(this.state, this.props.currentUser.user.token)
-            this.props.setShowForm(false)
+            .then(() => this.props.setShowForm(false))
+            .catch((errors) => this.setState({ errors: errors }));
+             
     } 
     render() {
       console.log('complication form: ', this.props.currentUser.user.token)
    return (
        <form onSubmit={this.handleSubmit}>
+           {this.state.errors && <p>{this.state.errors}</p>}
            <label htmlFor="complication_description">Description: </label>
            <input onChange={this.handleChange} name="complication_description" id="complication-description"    type="text"/>
            <label htmlFor="complication_severity">Severity (1-10): </label>

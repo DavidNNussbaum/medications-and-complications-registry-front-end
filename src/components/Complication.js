@@ -1,4 +1,6 @@
 import {useState} from 'react'
+import { connect } from 'react-redux';
+import { deleteAComplication } from '../actions/medActions';
 import EditComplicationForm from '../forms/EditComplicationForm'
 
 const Complication = (props) => {
@@ -18,7 +20,7 @@ const Complication = (props) => {
         { (props.currentUser.user && props.currentUser.user.user.data.attributes.id === props.complication.user_id) && (
           <>
           <button onClick={handleEdit}>Edit This Complication</button>
-          {showForm && <EditComplicationForm complication={props.complication} setShowForm={setShowForm} updateComplication={props.updateComplication} currentUser={props.currentUser}/>}
+          {showForm && <EditComplicationForm complication={props.complication} setShowForm={setShowForm} currentUser={props.currentUser}/>}
           <button onClick={handleClick} >Delete This Complication</button>
           </>
         )}
@@ -27,4 +29,19 @@ const Complication = (props) => {
     )
 }
 
-export default Complication;
+const mapStateToProps = state => {
+  return {
+      currentUser: state.user
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+      deleteComplication: (complicationId, token) => dispatch(deleteAComplication(complicationId, token)),
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Complication);
+
+
+ 

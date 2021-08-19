@@ -9,6 +9,7 @@ class SignupForm extends Component {
             email: "",
             password: "",
             password_confirmation: "",
+            errors: '',
         };
       }
       handleChange = event => {
@@ -20,11 +21,14 @@ class SignupForm extends Component {
     handleSubmit = (event) => {
        event.preventDefault()
        this.props.setSignupUser(this.state)
-       this.props.setShowForm(false)
+       .then(() => this.props.setShowForm(false))
+       .catch((errors) => this.setState({ errors: errors }));
+       
     }
     render() {
     return(
    <form onSubmit={this.handleSubmit}>
+    {this.state.errors && <p>{this.state.errors}</p>}
       <label htmlFor="first_name"> 
           First Name: 
       </label>

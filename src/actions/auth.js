@@ -5,9 +5,9 @@ const setToken = (token) => {
   
 const getToken = () => {
     const now = new Date(Date.now()).getTime();
-    const thirtyMinutes = 1000 * 60 * 30;
+    const sixtyMinutes = 1000 * 60 * 60;
     const timeSinceLastLogin = now - localStorage.getItem("lastLoginTime");
-    if (timeSinceLastLogin < thirtyMinutes) {
+    if (timeSinceLastLogin < sixtyMinutes) {
         return localStorage.getItem("token");
     }
 };
@@ -33,10 +33,9 @@ export const signupUser = (userData) => {
                     }
                     );
             } else {
-                // return resp.json().then((errors) => {
-                //     dispatch({ type: NOT_AUTHENTICATED });
-                //     return Promise.reject(errors);
-                // });
+                return resp.json().then((json) => {
+                    return Promise.reject(json.error);
+                });
             }
         });
     };
@@ -64,10 +63,9 @@ export const loginUser = (userData) => {
                         
                     );
             } else {
-                // return resp.json().then((errors) => {
-                //     dispatch({ type: NOT_AUTHENTICATED });
-                //     return Promise.reject(errors);
-                // });
+                return resp.json().then((json) => {
+                    return Promise.reject(json.error);
+                });
             }
         });
     };
