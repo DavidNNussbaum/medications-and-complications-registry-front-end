@@ -42,7 +42,6 @@ class Medications extends PureComponent {
 const mapStateToProps = state => {
     return {
       medications: state.medications,
-      
       complications: state.complications,
       loading: state.medications.loading
     }

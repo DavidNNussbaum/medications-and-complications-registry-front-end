@@ -35,7 +35,7 @@ export const editComplication = (complicationData, complicationId, token) => {
     })
   }
 }
-// dispatch({type: 'UPDATE_COMPLICATION', complication: complication.data.attributes})
+
 export const createAComplication = (complicationData, token) => {
   return dispatch => {
     return fetch('http://localhost:3000/complications', {
@@ -60,11 +60,7 @@ export const createAComplication = (complicationData, token) => {
           }
         })
       }}
-        // .then(resp => {resp.json())
-        // .then(complication => {
-        //   dispatch({type: 'CREATE_COMPLICATION', complication: complication.data.attributes})
-        // })} }
-
+         
 export const deleteAComplication = (complicationId, token) => {
   return dispatch => {
     fetch(`http://localhost:3000/complications/${complicationId}`, {

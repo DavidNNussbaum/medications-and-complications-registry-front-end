@@ -31,7 +31,6 @@ class ComplicationForm extends Component {
              
     } 
     render() {
-      console.log('complication form: ', this.props.currentUser.user.token)
    return (
        <form onSubmit={this.handleSubmit}>
            {this.state.errors && <p>{this.state.errors}</p>}

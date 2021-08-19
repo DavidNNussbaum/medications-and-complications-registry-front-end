@@ -21,9 +21,10 @@ class SignupForm extends Component {
     handleSubmit = (event) => {
        event.preventDefault()
        this.props.setSignupUser(this.state)
-       .then(() => this.props.setShowForm(false))
+       .then(() => {
+           this.props.setShowForm(false)
+        })
        .catch((errors) => this.setState({ errors: errors }));
-       
     }
     render() {
     return(
@@ -55,6 +56,5 @@ class SignupForm extends Component {
     )
 }
 }
-
 
 export default SignupForm;

@@ -87,7 +87,6 @@ export const checkAuth = () => {
                   .then(user => {
                       dispatch({type: "SET_USER", user: user})})
         } else {
-        //   return Promise.reject(dispatch({type: "LOGOUT_USER"}))
             dispatch({type: "LOGOUT_USER"})
         }
       })
