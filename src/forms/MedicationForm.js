@@ -42,19 +42,12 @@ render() {
 }
 }
 
-const mapStateToProps = state => {
-    return {
-        errors: state.medications.errors,
-        state: state
-    }
-  }
-
   const mapDispatchToProps = (dispatch) => {
       return {
          addNewMedication: medication => dispatch(createAMedication(medication)),
       }
   }
 
-export default connect(mapStateToProps, mapDispatchToProps)(MedicationForm);
+export default connect(null, mapDispatchToProps)(MedicationForm);
 
  

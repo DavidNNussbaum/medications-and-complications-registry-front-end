@@ -7,7 +7,7 @@ class MedicationList extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      medication: undefined
+      medication: null
     }
     
   }
