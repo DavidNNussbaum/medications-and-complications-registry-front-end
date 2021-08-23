@@ -11,13 +11,12 @@ class ComplicationForm extends Component {
                 complication_duration: "",
                 complication_description: "",
                 completely_resolved: "",
-                errors: '',
+                errors: "",
             };
           }
           handleChange = event => {
             this.setState({
-                [event.target.name]: event.target.value
-                 
+                [event.target.name]: event.target.value    
             });
           };
     

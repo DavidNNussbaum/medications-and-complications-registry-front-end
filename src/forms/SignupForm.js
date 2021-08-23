@@ -9,7 +9,7 @@ class SignupForm extends Component {
             email: "",
             password: "",
             password_confirmation: "",
-            errors: '',
+            errors: "",
         };
       }
       handleChange = event => {

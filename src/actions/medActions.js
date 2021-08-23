@@ -1,7 +1,6 @@
 const fetchMeds = () => {
   return (dispatch) => {
     dispatch({ type: 'LOADING_MEDICATIONS'})
-  
     fetch('http://localhost:3000/medications').then(response => {
       return response.json()
     }).then(responseJSON => {
